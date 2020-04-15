@@ -1,6 +1,9 @@
 package com.RestaurantAPI.models;
 
-public class AuthenticationResponse {
+import java.io.Serializable;
+
+//dunno if needs to implement Serializable
+public class AuthenticationResponse implements Serializable {
 
     private final String jwt;
 

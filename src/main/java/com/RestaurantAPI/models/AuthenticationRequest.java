@@ -1,25 +1,28 @@
 package com.RestaurantAPI.models;
 
-public class AuthenticationRequest {
+import java.io.Serializable;
+//dunno if need to implement Serializable
+public class AuthenticationRequest implements Serializable {
 
-    private String userName;
+    private String username;
     private String password;
 
     public AuthenticationRequest() {
     }
 
-    public AuthenticationRequest(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    public AuthenticationRequest(String username, String password) {
+//        this.username = username;
+//        this.password = password;
+        this.setUsername(username);
+        this.setPassword(password);
     }
 
-    public String getUserName() {
-        return userName;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    public String getUserName() { return username; }
 
     public String getPassword() {
         return password;

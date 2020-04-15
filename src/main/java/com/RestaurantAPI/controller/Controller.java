@@ -52,10 +52,18 @@ class TestController {
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception
+//    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody String user) throws Exception
     {
+        Object obj = JSONValue.parse(user);
+        JSONObject jsonObject = (JSONObject) obj;
+        String username =  (String) jsonObject.get("username");
+        String password =  (String) jsonObject.get("password");
+        AuthenticationRequest authenticationRequest = new AuthenticationRequest(username, password);
         try
         {
+            System.out.println("controller: \nusername: " + authenticationRequest.getUserName()
+                    + "  pass "+ authenticationRequest.getPassword());
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(), authenticationRequest.getPassword())
             );
@@ -80,7 +88,7 @@ class TestController {
         try {
             while (cursor.hasNext())
             {
-                addresses.add((String) cursor.next().get("address"));
+                addresses.add((String) cursor.next().get("Address"));
             }
         }
         finally {
