@@ -52,6 +52,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             //check whether the token matches userDetails and not expired
             if (jwtUtil.validateToken(jwt, userDetails))
             {
+                System.out.println("adasdasds");
                 //create default token for spring security
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
