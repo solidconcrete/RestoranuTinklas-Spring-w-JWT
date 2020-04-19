@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment=" aaah&#10; test Commit">
+    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/Services/MyUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/Services/MyUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/config/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/config/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/filters/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/filters/JwtRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/config/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/config/JwtUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/controller/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/controller/TestController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,45 +238,45 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="494" y="264" width="440" height="511" key="FileChooserDialogImpl/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321518222" />
-    <state width="1438" height="258" key="GridCell.Tab.0.bottom" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.0.bottom" timestamp="1587340520855">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.0.bottom/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.0.bottom/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520855" />
     <state width="1440" height="380" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762599" />
-    <state width="1438" height="258" key="GridCell.Tab.0.center" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.0.center" timestamp="1587340520855">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.0.center/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.0.center/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520855" />
     <state width="1440" height="380" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762599" />
-    <state width="1438" height="258" key="GridCell.Tab.0.left" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.0.left" timestamp="1587340520854">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.0.left/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.0.left/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520854" />
     <state width="1440" height="380" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762598" />
-    <state width="1438" height="258" key="GridCell.Tab.0.right" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.0.right" timestamp="1587340520855">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.0.right/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.0.right/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520855" />
     <state width="1440" height="380" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762599" />
-    <state width="1438" height="258" key="GridCell.Tab.1.bottom" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.1.bottom" timestamp="1587340520855">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.1.bottom/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.1.bottom/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520855" />
     <state width="1440" height="380" key="GridCell.Tab.1.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762599" />
-    <state width="1438" height="258" key="GridCell.Tab.1.center" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.1.center" timestamp="1587340520855">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.1.center/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.1.center/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520855" />
     <state width="1440" height="380" key="GridCell.Tab.1.center/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762599" />
-    <state width="1438" height="258" key="GridCell.Tab.1.left" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.1.left" timestamp="1587340520855">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.1.left/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.1.left/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520855" />
     <state width="1440" height="380" key="GridCell.Tab.1.left/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762599" />
-    <state width="1438" height="258" key="GridCell.Tab.1.right" timestamp="1587322243479">
+    <state width="2517" height="258" key="GridCell.Tab.1.right" timestamp="1587340520855">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1438" height="258" key="GridCell.Tab.1.right/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587322243479" />
+    <state width="2517" height="258" key="GridCell.Tab.1.right/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587340520855" />
     <state width="1440" height="380" key="GridCell.Tab.1.right/0.0.2560.1040@0.0.2560.1040" timestamp="1587046762599" />
     <state width="2127" height="324" key="GridCell.Tab.2.bottom" timestamp="1586620932544">
       <screen x="0" y="0" width="2560" height="1040" />

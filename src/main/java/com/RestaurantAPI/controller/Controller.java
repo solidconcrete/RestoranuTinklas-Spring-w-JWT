@@ -6,6 +6,7 @@ import com.RestaurantAPI.config.JwtUtil;
 import com.RestaurantAPI.filters.JwtRequestFilter;
 import com.RestaurantAPI.models.AuthenticationRequest;
 import com.RestaurantAPI.models.AuthenticationResponse;
+import com.RestaurantAPI.mongoActions.MongoActions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import org.bson.Document;
@@ -50,14 +51,9 @@ class TestController {
     String hello()
     {
         return "hello, this is the main page. Available commands are:" +
-                "/addresses";
-    }
+                "/authenticate (POST)" +
+                "/addresses (GET)";
 
-
-    @RequestMapping({"/hello"})
-    public String helloPage()
-    {
-        return "Stay at home";
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
@@ -90,35 +86,19 @@ class TestController {
     }
 
     @GetMapping("/addresses")
-    ArrayList<String> addresses(@RequestHeader("Authorization") String jwt)
+    ResponseEntity addresses(@RequestHeader("Authorization") String jwt)
     {
-        String username = jwtTokenUtil.extractUserName(jwt.substring(15, jwt.length()-2));
-        MongoCollection collection = MainApplicationClass.getCollection("restaurants");
-        MongoCursor<Document> cursor = collection.find().iterator();
-        ArrayList<String> addresses = new ArrayList<String>();
-        try {
-            while (cursor.hasNext())
-            {
-                addresses.add((String) cursor.next().get("Address"));
-            }
-        }
-        finally {
-            cursor.close();
-        }
-        return addresses;
+        String Email = jwtTokenUtil.extractUserName(jwt.substring(15, jwt.length()-2));
+
+        ArrayList<String> addresses = MongoActions.getManagedRestaurants(Email);
+        return ResponseEntity.ok(addresses);
     }
 
+//    @GetMapping("/menu")
+//    ResponseEntity menu(@RequestHeader("Authorization") String restaurantAddress)
+//    {
+//
+//    }
 
-
-
-    @RequestMapping (value = "login", method = RequestMethod.POST)
-    @ResponseBody
-    public String loginController (@RequestBody String user) throws Exception
-    {
-        Object obj = JSONValue.parse(user);
-        JSONObject jsonObject = (JSONObject) obj;
-
-        return (String) jsonObject.get("login");
-    }
 }
 
