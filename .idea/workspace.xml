@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment="Another commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/entities/RestaurantUser.java" afterDir="false" />
+    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment="UserDetails for now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/config/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/config/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/SpringSecurity/SecurityConfigurer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/config/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/config/JwtUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/controller/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/controller/TestController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +131,7 @@
       <workItem from="1587042468750" duration="10334000" />
       <workItem from="1587153332829" duration="11416000" />
       <workItem from="1587234862499" duration="4625000" />
-      <workItem from="1587316711622" duration="2966000" />
+      <workItem from="1587316711622" duration="3650000" />
     </task>
     <task id="LOCAL-00001" summary="Another commit">
       <created>1586443756757</created>
@@ -153,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586443868031</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="UserDetails for now">
+      <created>1587321098898</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587321098898</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,13 +162,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Another commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Another commit" />
+    <MESSAGE value="UserDetails for now" />
+    <option name="LAST_COMMIT_MESSAGE" value="UserDetails for now" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="723" y="179" key="#Deployment" timestamp="1586445033889">
+    <state x="723" y="179" key="#Deployment" timestamp="1587321247536">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="723" y="179" key="#Deployment/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1586445033889" />
+    <state x="723" y="179" key="#Deployment/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321247536" />
     <state x="856" y="186" key="#Plugins" timestamp="1586801187964">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -188,18 +190,18 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="567" y="328" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1585870462475" />
-    <state x="721" y="115" key="CommitChangelistDialog2" timestamp="1587321081997">
+    <state x="721" y="115" key="CommitChangelistDialog2" timestamp="1587321293965">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="721" y="115" key="CommitChangelistDialog2/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321081997" />
+    <state x="721" y="115" key="CommitChangelistDialog2/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321293965" />
     <state x="100" y="87" key="DiffContextDialog" timestamp="1586443845706">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="100" y="87" key="DiffContextDialog/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1586443845706" />
-    <state x="494" y="264" width="440" height="511" key="FileChooserDialogImpl" timestamp="1586635546747">
+    <state x="494" y="264" width="440" height="511" key="FileChooserDialogImpl" timestamp="1587321518222">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="494" y="264" width="440" height="511" key="FileChooserDialogImpl/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1586635546747" />
+    <state x="494" y="264" width="440" height="511" key="FileChooserDialogImpl/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321518222" />
     <state width="1438" height="258" key="GridCell.Tab.0.bottom" timestamp="1587321061804">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -260,6 +262,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="1533" y="178" key="Maven.ArtifactSearchDialog/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1585937155913" />
+    <state x="597" y="239" key="RollbackChangesDialog" timestamp="1587321543371">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="597" y="239" key="RollbackChangesDialog/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321543371" />
     <state x="112" y="166" key="SettingsEditor" timestamp="1586370051780">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -269,10 +275,10 @@
     </state>
     <state x="671" y="387" key="com.intellij.ide.util.TipDialog/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587318628560" />
     <state x="671" y="387" key="com.intellij.ide.util.TipDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1587042467905" />
-    <state x="731" y="423" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587321024754">
+    <state x="731" y="423" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587321524764">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="731" y="423" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321024754" />
+    <state x="731" y="423" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321524764" />
     <state x="419" y="236" key="new project wizard" timestamp="1586806983659">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
@@ -281,10 +287,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="577" y="235" key="run.anything.popup/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587320277809" />
-    <state x="865" y="287" width="672" height="678" key="search.everywhere.popup" timestamp="1587056533766">
+    <state x="865" y="287" width="672" height="678" key="search.everywhere.popup" timestamp="1587321535239">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="865" y="287" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587056533766" />
+    <state x="865" y="287" width="672" height="678" key="search.everywhere.popup/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587321535239" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -88,7 +88,7 @@ class TestController {
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUserName());
         final String jwt = jwtTokenUtil.generateToken(userDetails);
-
+        System.out.println("test1");
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
