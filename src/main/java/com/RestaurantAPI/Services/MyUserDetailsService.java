@@ -27,7 +27,7 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) {
 //        System.out.println("+++ " + userName + "+++");
 //        return new User("foo", "foo", new ArrayList<>());
-        System.out.println("asdasdasdsasa");
+
         MongoCollection<Document> collection = MainApplicationClass.getCollection("workers");
         Document worker = collection.find(new Document("Email", userName)).first();
         Object obj = null;

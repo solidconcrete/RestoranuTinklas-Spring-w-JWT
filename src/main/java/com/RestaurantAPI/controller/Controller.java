@@ -66,8 +66,6 @@ class TestController {
     {
         String u = URLDecoder.decode(user, "ISO-8859-1");
         u = u.substring(0, u.length()-1);
-        System.out.println("u: " + u);
-        System.out.println("user: " + user);
         Object obj = JSONValue.parse(u);
         JSONObject jsonObject = (JSONObject) obj;
         String username =  (String) jsonObject.get("username");
@@ -88,7 +86,6 @@ class TestController {
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUserName());
         final String jwt = jwtTokenUtil.generateToken(userDetails);
-        System.out.println("test1dfhfh");
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 

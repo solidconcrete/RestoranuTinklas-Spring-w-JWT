@@ -43,7 +43,6 @@ public class JwtUtil {
     {
         if (token.contains("{\"jwt\":\""))
         {
-            System.out.println("testfklkkkkkkdhfgh");
             token = token.substring(8, token.length()-2);
         }
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
