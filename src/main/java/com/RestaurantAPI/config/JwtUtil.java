@@ -1,12 +1,10 @@
 package com.RestaurantAPI.config;
 
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +41,10 @@ public class JwtUtil {
 
     private Claims extractAllClaims(String token)
     {
+        if (token.contains("{\"jwt\":\""))
+        {
+            token = token.substring(8, token.length()-2);
+        }
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 

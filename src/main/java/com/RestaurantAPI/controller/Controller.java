@@ -3,6 +3,7 @@ package com.RestaurantAPI.controller;
 import com.RestaurantAPI.MainApplicationClass;
 import com.RestaurantAPI.Services.MyUserDetailsService;
 import com.RestaurantAPI.config.JwtUtil;
+import com.RestaurantAPI.filters.JwtRequestFilter;
 import com.RestaurantAPI.models.AuthenticationRequest;
 import com.RestaurantAPI.models.AuthenticationResponse;
 import com.mongodb.client.MongoCollection;
@@ -16,15 +17,20 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 
+import java.net.URLDecoder;
+import java.util.ArrayList;
+@CrossOrigin
 @RestController
 class TestController {
 
@@ -36,6 +42,9 @@ class TestController {
 
     @Autowired
     private JwtUtil jwtTokenUtil;
+
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     @GetMapping("/")
     String hello()
@@ -55,7 +64,11 @@ class TestController {
 //    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception
     public ResponseEntity<?> createAuthenticationToken(@RequestBody String user) throws Exception
     {
-        Object obj = JSONValue.parse(user);
+        String u = URLDecoder.decode(user, "ISO-8859-1");
+        u = u.substring(0, u.length()-1);
+        System.out.println("u: " + u);
+        System.out.println("user: " + user);
+        Object obj = JSONValue.parse(u);
         JSONObject jsonObject = (JSONObject) obj;
         String username =  (String) jsonObject.get("username");
         String password =  (String) jsonObject.get("password");
@@ -80,8 +93,9 @@ class TestController {
     }
 
     @GetMapping("/addresses")
-    ArrayList<String > addresses()
+    ArrayList<String> addresses(@RequestHeader("Authorization") String jwt)
     {
+        String username = jwtTokenUtil.extractUserName(jwt.substring(15, jwt.length()-2));
         MongoCollection collection = MainApplicationClass.getCollection("restaurants");
         MongoCursor<Document> cursor = collection.find().iterator();
         ArrayList<String> addresses = new ArrayList<String>();
@@ -96,6 +110,9 @@ class TestController {
         }
         return addresses;
     }
+
+
+
 
     @RequestMapping (value = "login", method = RequestMethod.POST)
     @ResponseBody
