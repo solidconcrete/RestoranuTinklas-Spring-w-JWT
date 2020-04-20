@@ -94,11 +94,11 @@ class TestController {
         return ResponseEntity.ok(addresses);
     }
 
-//    @GetMapping("/menu")
-//    ResponseEntity menu(@RequestHeader("Authorization") String restaurantAddress)
-//    {
-//
-//    }
+    @GetMapping("/menu")
+    ResponseEntity menu(@RequestHeader("RestaurantAddress") String restaurantAddress)
+    {
+        return ResponseEntity.ok(MongoActions.getRestaurantDishes(restaurantAddress));
+    }
 
 }
 
