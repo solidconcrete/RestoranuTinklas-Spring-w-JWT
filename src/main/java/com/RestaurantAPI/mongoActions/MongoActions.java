@@ -68,9 +68,11 @@ public class MongoActions {
                 if (((String) restaurant.get("Restaurant_chain")).equals(chainName))
                 {
                     JSONObject restaurantJson = new JSONObject();
-                    restaurantJson.put("id",  i);
+                    String id = restaurant.getObjectId("_id").toString();
+                    restaurantJson.put("_id", id);
                     restaurantJson.put("address", (String) restaurant.get("Address"));
                     System.out.println(restaurantJson);
+
                     addresses.add(restaurantJson);
 //                    addresses.add((String) restaurant.get("Address"));
                     i++;
