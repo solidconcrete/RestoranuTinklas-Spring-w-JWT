@@ -58,7 +58,7 @@ public class MongoActions {
     public static ArrayList<JSONObject> getRestaurantsFromChainName(String chainName)
     {
         ArrayList<JSONObject> addresses = new ArrayList<>();
-
+        int i = 0;
         MongoCollection restaurantsCollection = MongoActions.getCollection("restaurants");
         MongoCursor<Document> restaurants = restaurantsCollection.find().iterator();
         try {
@@ -68,10 +68,12 @@ public class MongoActions {
                 if (((String) restaurant.get("Restaurant_chain")).equals(chainName))
                 {
                     JSONObject restaurantJson = new JSONObject();
-                    restaurantJson.put("id", (String) restaurant.get("_id"));
+                    restaurantJson.put("id",  i);
                     restaurantJson.put("address", (String) restaurant.get("Address"));
                     System.out.println(restaurantJson);
+                    addresses.add(restaurantJson);
 //                    addresses.add((String) restaurant.get("Address"));
+                    i++;
                 }
             }
             restaurants.close();
