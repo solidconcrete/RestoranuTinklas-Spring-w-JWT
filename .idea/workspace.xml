@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/mongoActions/MongoActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/mongoActions/MongoActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/mongoActions/MongoActions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/RestaurantAPI/mongoActions/MongoActions.class" afterDir="false" />
-    </list>
+    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -134,7 +130,7 @@
       <workItem from="1587234862499" duration="4625000" />
       <workItem from="1587316711622" duration="4218000" />
       <workItem from="1587389627487" duration="2318000" />
-      <workItem from="1587472553749" duration="13432000" />
+      <workItem from="1587472553749" duration="13762000" />
     </task>
     <task id="LOCAL-00001" summary="Another commit">
       <created>1586443756757</created>
