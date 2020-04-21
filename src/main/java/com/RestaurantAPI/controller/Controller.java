@@ -69,7 +69,7 @@ class TestController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody String user) throws Exception
     {
         String u = URLDecoder.decode(user, "ISO-8859-1");
-        
+
 
 //        u = u.substring(0, u.length()-1);
         Object obj = JSONValue.parse(u);
@@ -100,7 +100,7 @@ class TestController {
     {
         System.out.println("Got from web: " + jwt);
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
-        ArrayList<String> addresses = MongoActions.getManagedRestaurants(Email);
+        ArrayList<JSONObject> addresses = MongoActions.getManagedRestaurants(Email);
 //        ArrayList<String> addresses = new ArrayList<>();
 
         return ResponseEntity.ok(addresses);

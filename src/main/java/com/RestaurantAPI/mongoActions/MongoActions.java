@@ -31,9 +31,9 @@ public class MongoActions {
         return collection;
     }
 
-    public static ArrayList<String> getManagedRestaurants(String Email)
+    public static ArrayList<JSONObject> getManagedRestaurants(String Email)
     {
-        ArrayList<String> addresses = new ArrayList<>();
+        ArrayList<JSONObject> addresses = new ArrayList<>();
         MongoCollection<Document> collection = MongoActions.getCollection("workers");
         Document workerDoc = collection.find(new Document("Email", Email)).first();
         String duty = (String) workerDoc.get("Duty");
@@ -45,15 +45,19 @@ public class MongoActions {
         else
         {
             System.out.println("WORKER DETECTED");
-            addresses.add (workerDoc.getString("Managed_restaurant"));
+            JSONObject restaurantJson = new JSONObject();
+            restaurantJson.put("id", 1);
+            restaurantJson.put("address", workerDoc.getString("Managed_restaurant"));
+            System.out.println(restaurantJson);
+            addresses.add (restaurantJson);
         }
         mongoClient.close();
         return addresses;
     }
 
-    public static ArrayList<String> getRestaurantsFromChainName(String chainName)
+    public static ArrayList<JSONObject> getRestaurantsFromChainName(String chainName)
     {
-        ArrayList<String> addresses = new ArrayList<>();
+        ArrayList<JSONObject> addresses = new ArrayList<>();
 
         MongoCollection restaurantsCollection = MongoActions.getCollection("restaurants");
         MongoCursor<Document> restaurants = restaurantsCollection.find().iterator();
@@ -63,7 +67,11 @@ public class MongoActions {
                 Document restaurant = restaurants.next();
                 if (((String) restaurant.get("Restaurant_chain")).equals(chainName))
                 {
-                    addresses.add((String) restaurant.get("Address"));
+                    JSONObject restaurantJson = new JSONObject();
+                    restaurantJson.put("id", (String) restaurant.get("_id"));
+                    restaurantJson.put("address", (String) restaurant.get("Address"));
+                    System.out.println(restaurantJson);
+//                    addresses.add((String) restaurant.get("Address"));
                 }
             }
             restaurants.close();
