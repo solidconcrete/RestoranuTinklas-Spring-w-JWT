@@ -1,0 +1,14 @@
+2020/04/21 16:39:08
+Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 16:39:11
+Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 16:41:12
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 16:45:40
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 16:54:03
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+aaaaaaaa
