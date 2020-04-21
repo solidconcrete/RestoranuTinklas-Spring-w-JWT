@@ -101,7 +101,7 @@ class TestController {
         System.out.println("Got from web: " + jwt);
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
         ArrayList<JSONObject> addresses = MongoActions.getManagedRestaurants(Email);
-//        ArrayList<String> addresses = new ArrayList<>();
+//        ArrayList<String> addresses = new ArrayList<>()fgjgjfg;
 
         return ResponseEntity.ok(addresses);
     }
