@@ -11,4 +11,30 @@ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jes
 2020/04/21 16:54:03
 /Authenticate 
  Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
-aaaaaaaa
+aaaaaaaa2020/04/21 16:58:03
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 17:42:42
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 18:01:50
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 18:02:14
+/Authenticate 
+ Got: {"username":"","password":""} , Decoded to: {"username":"","password":""}
+2020/04/21 18:02:33
+/Authenticate 
+ Got: {"username":"jesus@example.example","password":"jesusPassword111"} , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}
+2020/04/21 18:05:50
+/Authenticate 
+ Got: {"username":"jesus@example.example","password":"jesusPassword111"} , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}
+2020/04/21 18:06:06
+/Authenticate 
+ Got: {"username":"jesus@example.example","password":"jesusPassword111"} , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}
+2020/04/21 18:07:06
+/Authenticate 
+ Got: {"username":"jesus@example.example","password":"jesusPassword111"} , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}
+2020/04/21 18:08:43
+/Authenticate 
+ Got: {"username":"jesus@example.example","password":"jesusPassword111"} , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}

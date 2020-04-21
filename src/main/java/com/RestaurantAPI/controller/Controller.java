@@ -83,7 +83,7 @@ class TestController {
             System.out.println("Error while writing to file: " + e.getMessage());
         }
 
-        u = u.substring(0, u.length()-1);
+//        u = u.substring(0, u.length()-1);
         Object obj = JSONValue.parse(u);
         JSONObject jsonObject = (JSONObject) obj;
         String username =  (String) jsonObject.get("username");
@@ -141,25 +141,25 @@ class TestController {
 //
 //    }
 
-    @GetMapping("/requestHistory")
-    ResponseEntity history()
-    {
-        try {
-            File myObj = new File("requestLog.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNext())
-            {
-                String data = myReader.nextLine();
-                return ResponseEntity.ok(data);
-            }
-            myReader.close();
-        }
-        catch (FileNotFoundException e )
-        {
-            String res = "File not found";
-            return ResponseEntity.ok(res);
-        }
-    }
+//    @GetMapping("/requestHistory")
+//    ResponseEntity history()
+//    {
+//        try {
+//            File myObj = new File("requestLog.txt");
+//            Scanner myReader = new Scanner(myObj);
+//            while (myReader.hasNext())
+//            {
+//                String data = myReader.nextLine();
+//                return ResponseEntity.ok(data);
+//            }
+//            myReader.close();
+//        }
+//        catch (FileNotFoundException e )
+//        {
+//            String res = "File not found";
+//            return ResponseEntity.ok(res);
+//        }
+//    }
 
 }
 
