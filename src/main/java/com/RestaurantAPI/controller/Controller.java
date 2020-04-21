@@ -69,19 +69,7 @@ class TestController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody String user) throws Exception
     {
         String u = URLDecoder.decode(user, "ISO-8859-1");
-
-        try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            FileWriter fstream = new FileWriter("requestLog.txt", true);
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write(dtf.format(now) + "\n" + "/Authenticate \n Got: " + user + " , Decoded to: " + u +"\n");
-            out.close();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error while writing to file: " + e.getMessage());
-        }
+        
 
 //        u = u.substring(0, u.length()-1);
         Object obj = JSONValue.parse(u);
@@ -110,21 +98,11 @@ class TestController {
     @GetMapping("/addresses")
     ResponseEntity addresses(@RequestHeader("Authorization") String jwt)
     {
-        try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            FileWriter fstream = new FileWriter("requestLog.txt", true);
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write("aaaaaaaa");
-            out.close();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error while writing to file: " + e.getMessage());
-        }
-
-        String Email = jwtTokenUtil.extractUserName(jwt.substring(15, jwt.length()-2));
+        System.out.println("Got from web: " + jwt);
+        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
         ArrayList<String> addresses = MongoActions.getManagedRestaurants(Email);
+//        ArrayList<String> addresses = new ArrayList<>();
+
         return ResponseEntity.ok(addresses);
     }
 
@@ -135,31 +113,6 @@ class TestController {
         return ResponseEntity.ok(dishes);
     }
 
-//    @GetMapping("/changeDishPrice")
-//    ResponseEntity changePrice(@RequestHeader("NewDishPrice") int newPrice)
-//    {
-//
-//    }
-
-//    @GetMapping("/requestHistory")
-//    ResponseEntity history()
-//    {
-//        try {
-//            File myObj = new File("requestLog.txt");
-//            Scanner myReader = new Scanner(myObj);
-//            while (myReader.hasNext())
-//            {
-//                String data = myReader.nextLine();
-//                return ResponseEntity.ok(data);
-//            }
-//            myReader.close();
-//        }
-//        catch (FileNotFoundException e )
-//        {
-//            String res = "File not found";
-//            return ResponseEntity.ok(res);
-//        }
-//    }
 
 }
 

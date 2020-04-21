@@ -38,3 +38,36 @@ aaaaaaaa2020/04/21 16:58:03
 2020/04/21 18:08:43
 /Authenticate 
  Got: {"username":"jesus@example.example","password":"jesusPassword111"} , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}
+2020/04/21 19:37:00
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 19:37:02
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 19:39:26
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 19:39:29
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 19:39:30
+/Authenticate 
+ Got: %7B%22username%22%3A%22jesus%40example.example%22%2C%22password%22%3A%22jesusPassword111%22%7D= , Decoded to: {"username":"jesus@example.example","password":"jesusPassword111"}=
+2020/04/21 19:41:00
+/Authenticate 
+ Got: {
+	"username" : "stasys@example.example",
+	"password" : "stasysPassword111"
+} , Decoded to: {
+	"username" : "stasys@example.example",
+	"password" : "stasysPassword111"
+}
+2020/04/21 19:50:49
+/Authenticate 
+ Got: {
+	"username" : "stasys@example.example",
+	"password" : "stasysPassword111"
+} , Decoded to: {
+	"username" : "stasys@example.example",
+	"password" : "stasysPassword111"
+}
