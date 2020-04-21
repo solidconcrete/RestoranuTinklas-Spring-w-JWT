@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/mongoActions/MongoActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/RestaurantAPI/mongoActions/MongoActions.java" afterDir="false" />
-    </list>
+    <list default="true" id="ca4189ec-ad77-4565-865e-d78bd706638d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +130,7 @@
       <workItem from="1587234862499" duration="4625000" />
       <workItem from="1587316711622" duration="4218000" />
       <workItem from="1587389627487" duration="2318000" />
-      <workItem from="1587472553749" duration="14300000" />
+      <workItem from="1587472553749" duration="14568000" />
     </task>
     <task id="LOCAL-00001" summary="Another commit">
       <created>1586443756757</created>
@@ -191,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587346919875</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="/menu returns dish id, img url and name by restaurant address">
+      <created>1587495649307</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1587495649307</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +219,8 @@
     <MESSAGE value="another second&#10; test Commit" />
     <MESSAGE value="Restaurants or restaurant depending on the user" />
     <MESSAGE value="Added /menu which receives restaurant address and returns its menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added /menu which receives restaurant address and returns its menu" />
+    <MESSAGE value="/menu returns dish id, img url and name by restaurant address" />
+    <option name="LAST_COMMIT_MESSAGE" value="/menu returns dish id, img url and name by restaurant address" />
   </component>
   <component name="WindowStateProjectService">
     <state x="723" y="179" key="#Deployment" timestamp="1587321247536">
@@ -242,10 +247,10 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="567" y="328" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1585870462475" />
-    <state x="209" y="115" width="1338" height="811" key="CommitChangelistDialog2" timestamp="1587346918774">
+    <state x="209" y="115" width="1338" height="811" key="CommitChangelistDialog2" timestamp="1587495648075">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state x="209" y="115" width="1338" height="811" key="CommitChangelistDialog2/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587346918774" />
+    <state x="209" y="115" width="1338" height="811" key="CommitChangelistDialog2/0.0.2560.1040/-1920.0.1536.824@0.0.2560.1040" timestamp="1587495648075" />
     <state x="347" y="125" width="2048" height="860" key="DiffContextDialog" timestamp="1587321950202">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
