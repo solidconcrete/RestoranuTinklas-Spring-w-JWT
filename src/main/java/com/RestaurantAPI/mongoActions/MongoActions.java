@@ -86,22 +86,27 @@ public class MongoActions {
         return addresses;
     }
 
-    public static ArrayList<String> getRestaurantDishes(String restaurantAddress)
+    public static ArrayList<JSONObject> getRestaurantDishes(String restaurantAddress)
     {
-        ArrayList<String> dishNames= new ArrayList<>();
+        ArrayList<JSONObject> dishes= new ArrayList<>();
         MongoCollection restaurantCollection = MongoActions.getCollection("restaurants");
         MongoCollection dishCollection = MongoActions.getCollection("dishes");
         Document restaurantDoc = (Document) restaurantCollection.find(new Document("Address", restaurantAddress)).first();
         Document dishDoc;
         BasicDBObject query = new BasicDBObject();
-        List<String > dishes = (List<String>) restaurantDoc.get("Dishes");
-        for (String id : dishes)
+        List<String > allDishes = (List<String>) restaurantDoc.get("Dishes");
+        for (String id : allDishes)
         {
+            JSONObject dish = new JSONObject();
             query.put("_id", new ObjectId(id));
             dishDoc =(Document) dishCollection.find(query).first();
-            dishNames.add((String) dishDoc.get("Dish_name"));
+            dish.put("name", (String) dishDoc.get("Dish_name"));
+            dish.put("img_url", (String) dishDoc.get("Image_link"));
+            dish.put("id", id);
+            dishes.add(dish);
+//            dishNames.add((String) dishDoc.get("Dish_name"));
         }
-        return dishNames;
+        return dishes;
     }
 
 

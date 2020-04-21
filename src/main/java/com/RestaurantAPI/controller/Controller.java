@@ -109,7 +109,7 @@ class TestController {
     @GetMapping("/menu")
     ResponseEntity menu(@RequestHeader("RestaurantAddress") String restaurantAddress)
     {
-        ArrayList<String> dishes = MongoActions.getRestaurantDishes(restaurantAddress);
+        ArrayList<JSONObject> dishes = MongoActions.getRestaurantDishes(restaurantAddress);
         return ResponseEntity.ok(dishes);
     }
 
