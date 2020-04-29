@@ -120,12 +120,16 @@ class TestController {
         return ResponseEntity.ok(Email);
     }
 
-    @GetMapping("getAddressOrChain")
+    @GetMapping("getHeaderData")
     ResponseEntity restaurantChain(@RequestHeader("Authorization") String jwt)
     {
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
         String addressOrChain = MongoActions.getAddressOrChain(Email);
-        return ResponseEntity.ok(addressOrChain);
+        String logo_url = MongoActions.getChainLogoByEmail(Email);
+        JSONObject headerData = new JSONObject();
+        headerData.put("addressOrChain", addressOrChain);
+        headerData.put("logo_url", logo_url);
+        return ResponseEntity.ok(headerData);
     }
 
 }

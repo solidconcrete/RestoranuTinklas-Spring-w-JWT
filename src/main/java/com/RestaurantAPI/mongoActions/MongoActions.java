@@ -104,6 +104,14 @@ public class MongoActions {
         return dishes;
     }
 
+    public static String getChainByRestaurantAddress (String restaurantAddress)
+    {
+        System.out.println("Got address: " + restaurantAddress);
+        MongoCollection<Document> collection = MongoActions.getCollection("restaurants");
+        Document restaurantDoc = collection.find(new Document("Address", restaurantAddress)).first();
+        return (String) restaurantDoc.get("Restaurant_chain");
+    }
+
     public static String getAddressOrChain(String Email)
     {
         MongoCollection<Document> collection = MongoActions.getCollection("workers");
@@ -117,6 +125,35 @@ public class MongoActions {
         else
         {
             return (String) workerDoc.get("Managed_restaurant");
+        }
+    }
+
+    public static String getLogoByChainName(String chainName)
+    {
+        MongoCollection<Document> collection = MongoActions.getCollection("restaurant_chains");
+        Document chainDoc = collection.find(new Document("Restaurant_chain_name", chainName)).first();
+        String imgUrl = (String) chainDoc.get("Chain_logo_link");
+        return imgUrl;
+
+    }
+
+
+
+    public static String getChainLogoByEmail(String Email)
+    {
+        MongoCollection<Document> collection = MongoActions.getCollection("workers");
+        Document workerDoc = collection.find(new Document("Email", Email)).first();
+        String duty = (String) workerDoc.get("Duty");
+        if (duty.equals("Restaurant_chain_manager"))
+        {
+            System.out.println("MANAGER DETECTED");
+            return getLogoByChainName(workerDoc.getString("Managed_restaurant_chain"));
+        }
+        else
+        {
+            String chainName = getChainByRestaurantAddress(workerDoc.getString("Managed_restaurant"));
+            System.out.println("Chain name : " + chainName);
+            return getLogoByChainName(chainName);
         }
     }
 
