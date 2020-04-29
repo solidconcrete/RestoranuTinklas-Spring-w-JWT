@@ -129,6 +129,7 @@ class TestController {
         JSONObject headerData = new JSONObject();
         headerData.put("addressOrChain", addressOrChain);
         headerData.put("logo_url", logo_url);
+        headerData.put("id", 1);
         return ResponseEntity.ok(headerData);
     }
 
