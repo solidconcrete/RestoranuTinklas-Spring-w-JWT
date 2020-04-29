@@ -9,13 +9,8 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
-import javax.print.Doc;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class MongoActions {
@@ -109,5 +104,20 @@ public class MongoActions {
         return dishes;
     }
 
+    public static String getAddressOrChain(String Email)
+    {
+        MongoCollection<Document> collection = MongoActions.getCollection("workers");
+        Document workerDoc = collection.find(new Document("Email", Email)).first();
+        String duty = (String) workerDoc.get("Duty");
+        if (duty.equals("Restaurant_chain_manager"))
+        {
+            System.out.println("MANAGER DETECTED");
+            return (String) workerDoc.get("Managed_restaurant_chain");
+        }
+        else
+        {
+            return (String) workerDoc.get("Managed_restaurant");
+        }
+    }
 
 }

@@ -113,6 +113,20 @@ class TestController {
         return ResponseEntity.ok(dishes);
     }
 
+    @GetMapping("/getUsername")
+    ResponseEntity username(@RequestHeader("Authorization") String jwt)
+    {
+        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
+        return ResponseEntity.ok(Email);
+    }
+
+    @GetMapping("getAddressOrChain")
+    ResponseEntity restaurantChain(@RequestHeader("Authorization") String jwt)
+    {
+        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
+        String addressOrChain = MongoActions.getAddressOrChain(Email);
+        return ResponseEntity.ok(addressOrChain);
+    }
 
 }
 

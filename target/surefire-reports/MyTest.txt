@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: MyTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.164 s <<< FAILURE! - in MyTest
+getOneRestaurant  Time elapsed: 1.013 s  <<< FAILURE!
+java.lang.AssertionError: expected:<[{"Address":"Kalvariju g. 55","id":1}]> but was:<[{"address":"Kalvariju g. 55","id":1}]>
+	at MyTest.getOneRestaurant(MyTest.java:19)
+

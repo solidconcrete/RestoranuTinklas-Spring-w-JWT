@@ -1,0 +1,12 @@
+com\RestaurantAPI\models\AuthenticationResponse.class
+com\RestaurantAPI\Services\MyUserDetailsService.class
+com\RestaurantAPI\SpringSecurity\SecurityConfigurer.class
+com\RestaurantAPI\entities\RestaurantUser.class
+com\RestaurantAPI\JwtAuthenticationEntryPoint.class
+com\RestaurantAPI\config\JwtUtil.class
+com\RestaurantAPI\models\AuthenticationRequest.class
+com\RestaurantAPI\StuffGotFromJS\ConvertData.class
+com\RestaurantAPI\mongoActions\MongoActions.class
+com\RestaurantAPI\MainApplicationClass.class
+com\RestaurantAPI\TestController.class
+com\RestaurantAPI\filters\JwtRequestFilter.class
