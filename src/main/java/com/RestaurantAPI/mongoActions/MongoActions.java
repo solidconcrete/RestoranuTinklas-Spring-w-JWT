@@ -164,14 +164,14 @@ public class MongoActions {
         return duty;
     }
 
-    public static ArrayList<JSONObject> getRestaurantWorkers(String restaurantAddress)
+    public static ArrayList<JSONObject> getRestaurantAdmin(String restaurantAddress)
     {
         ArrayList<JSONObject> workersData = new ArrayList<>();
-        JSONObject workerData = new JSONObject();
         MongoCollection<Document> collection = MongoActions.getCollection("workers");
         MongoCursor<Document> workers = collection.find(new Document("Managed_restaurant", restaurantAddress)).iterator();
         while (workers.hasNext())
         {
+            JSONObject workerData = new JSONObject();
             Document worker = workers.next();
             workerData.put("id", worker.getObjectId("_id").toString());
             workerData.put("name", worker.getString("Name"));

@@ -136,18 +136,18 @@ class TestController {
         return ResponseEntity.ok(headerDataArrayList);
     }
 
-    @GetMapping("getRestaurantWorkers")
-    ResponseEntity restaurantWorkers(@RequestHeader("Authorization") String jwt,
+    @GetMapping("getRestaurantAdmin")
+    public ResponseEntity restaurantAdmin(@RequestHeader("Authorization") String jwt,
                                         @RequestHeader("RestaurantAddress") String restaurantAddress)
     {
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
         if (MongoActions.getWorkerDuty(Email).equals("Restaurant_chain_manager"))
         {
-            return ResponseEntity.ok(MongoActions.getRestaurantWorkers(restaurantAddress));
+            return ResponseEntity.ok(MongoActions.getRestaurantAdmin(restaurantAddress));
         }
         else
         {
-            return (ResponseEntity) ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You don't have permission to this request");
         }
     }
 
