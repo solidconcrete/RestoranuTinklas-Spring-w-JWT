@@ -121,7 +121,7 @@ class TestController {
         return ResponseEntity.ok(Email);
     }
 
-    @GetMapping("getHeaderData")
+    @GetMapping("/getHeaderData")
     ResponseEntity restaurantChain(@RequestHeader("Authorization") String jwt)
     {
         ArrayList<JSONObject> headerDataArrayList = new ArrayList<>();
@@ -136,7 +136,7 @@ class TestController {
         return ResponseEntity.ok(headerDataArrayList);
     }
 
-    @GetMapping("getRestaurantAdmin")
+    @GetMapping("/getRestaurantAdmin")
     public ResponseEntity restaurantAdmin(@RequestHeader("Authorization") String jwt,
                                         @RequestHeader("RestaurantAddress") String restaurantAddress)
     {
@@ -151,5 +151,11 @@ class TestController {
         }
     }
 
+    @GetMapping("/getChainDishes")
+    public ResponseEntity ChainDishes(@RequestHeader("Authorization") String jwt)
+    {
+            MongoActions.getChainDishes(jwtTokenUtil.extractUserName(jwt.substring(7)));
+            return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("lalala");
+    }
 }
 
