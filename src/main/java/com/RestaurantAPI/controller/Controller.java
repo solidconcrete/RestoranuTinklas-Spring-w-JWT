@@ -118,7 +118,12 @@ class TestController {
     ResponseEntity username(@RequestHeader("Authorization") String jwt)
     {
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
-        return ResponseEntity.ok(Email);
+        JSONObject usernameJson = new JSONObject();
+        ArrayList<JSONObject> usernameArray = new ArrayList<>();
+        usernameJson.put("id", 1);
+        usernameJson.put("username", Email);
+        usernameArray.add(usernameJson);
+        return ResponseEntity.ok(usernameArray);
     }
 
     @GetMapping("/getHeaderData")
