@@ -6,6 +6,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
@@ -137,8 +138,6 @@ public class MongoActions {
 
     }
 
-
-
     public static String getChainLogoByEmail(String Email)
     {
         MongoCollection<Document> collection = MongoActions.getCollection("workers");
@@ -157,4 +156,29 @@ public class MongoActions {
         }
     }
 
+    public static String getWorkerDuty(String Email)
+    {
+        MongoCollection<Document> collection = MongoActions.getCollection("workers");
+        Document workerDoc = collection.find(new Document("Email", Email)).first();
+        String duty = (String) workerDoc.get("Duty");
+        return duty;
+    }
+
+    public static ArrayList<JSONObject> getRestaurantWorkers(String restaurantAddress)
+    {
+        ArrayList<JSONObject> workersData = new ArrayList<>();
+        JSONObject workerData = new JSONObject();
+        MongoCollection<Document> collection = MongoActions.getCollection("workers");
+        MongoCursor<Document> workers = collection.find(new Document("Managed_restaurant", restaurantAddress)).iterator();
+        while (workers.hasNext())
+        {
+            Document worker = workers.next();
+            workerData.put("id", worker.getObjectId("_id").toString());
+            workerData.put("name", worker.getString("Name"));
+            workerData.put("surname", worker.getString("Surname"));
+            workerData.put("email", worker.getString("Email"));
+            workersData.add(workerData);
+        }
+        return workersData;
+    }
 }

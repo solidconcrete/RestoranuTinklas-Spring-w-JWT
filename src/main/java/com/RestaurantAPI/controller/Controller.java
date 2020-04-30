@@ -19,6 +19,7 @@ import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -107,7 +108,7 @@ class TestController {
     }
 
     @GetMapping("/menu")
-    ResponseEntity menu(@RequestHeader("RestaurantAddress") String restaurantAddress)
+    ResponseEntity menu(@RequestHeader("RestaurantAddress") String restaurantAddress, @RequestHeader ("Authorization") String jwt)
     {
         ArrayList<JSONObject> dishes = MongoActions.getRestaurantDishes(restaurantAddress);
         return ResponseEntity.ok(dishes);
@@ -123,6 +124,7 @@ class TestController {
     @GetMapping("getHeaderData")
     ResponseEntity restaurantChain(@RequestHeader("Authorization") String jwt)
     {
+        ArrayList<JSONObject> headerDataArrayList = new ArrayList<>();
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
         String addressOrChain = MongoActions.getAddressOrChain(Email);
         String logo_url = MongoActions.getChainLogoByEmail(Email);
@@ -130,7 +132,23 @@ class TestController {
         headerData.put("addressOrChain", addressOrChain);
         headerData.put("logo_url", logo_url);
         headerData.put("id", 1);
-        return ResponseEntity.ok(headerData);
+        headerDataArrayList.add(headerData);
+        return ResponseEntity.ok(headerDataArrayList);
+    }
+
+    @GetMapping("getRestaurantWorkers")
+    ResponseEntity restaurantWorkers(@RequestHeader("Authorization") String jwt,
+                                        @RequestHeader("RestaurantAddress") String restaurantAddress)
+    {
+        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
+        if (MongoActions.getWorkerDuty(Email).equals("Restaurant_chain_manager"))
+        {
+            return ResponseEntity.ok(MongoActions.getRestaurantWorkers(restaurantAddress));
+        }
+        else
+        {
+            return (ResponseEntity) ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+        }
     }
 
 }
