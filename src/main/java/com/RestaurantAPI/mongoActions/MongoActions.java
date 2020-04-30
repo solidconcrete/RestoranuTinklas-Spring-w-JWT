@@ -70,6 +70,7 @@ public class MongoActions {
                     System.out.println(restaurantJson);
 
                     addresses.add(restaurantJson);
+
                     i++;
                 }
             }
@@ -193,5 +194,17 @@ public class MongoActions {
         Document workerDoc = collection.find(new Document("Email", Email)).first();
         String chainName = (String) workerDoc.get("Managed_restaurant_chain");
         return chainName;
+    }
+
+    public static JSONObject getWorkerData(String Email)
+    {
+        MongoCollection<Document> collection = MongoActions.getCollection("workers");
+        Document workerDoc = collection.find(new Document("Email", Email)).first();
+        JSONObject workerData = new JSONObject();
+        workerData.put("id",workerDoc.getObjectId("_id").toString());
+        workerData.put("name", workerDoc.getString("Name"));
+        workerData.put("surname", workerDoc.getString("Surname"));
+        workerData.put("email", workerDoc.getString("Email"));
+        return workerData;
     }
 }

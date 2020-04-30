@@ -114,16 +114,15 @@ class TestController {
         return ResponseEntity.ok(dishes);
     }
 
-    @GetMapping("/getUsername")
+    @GetMapping("/getUserData")
     ResponseEntity username(@RequestHeader("Authorization") String jwt)
     {
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
-        JSONObject usernameJson = new JSONObject();
-        ArrayList<JSONObject> usernameArray = new ArrayList<>();
-        usernameJson.put("id", 1);
-        usernameJson.put("username", Email);
-        usernameArray.add(usernameJson);
-        return ResponseEntity.ok(usernameArray);
+        JSONObject userDataJson = MongoActions.getWorkerData(Email);
+        ArrayList<JSONObject> userDataArray = new ArrayList<>();
+        userDataArray.add(userDataJson);
+        return ResponseEntity.ok(userDataArray);
+
     }
 
     @GetMapping("/getHeaderData")
