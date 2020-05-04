@@ -64,9 +64,10 @@ class TestController {
                 "/addresses (returns managed restaurants) \n" +
                 "/menu (Send restaurantAddress and get its menu)\n" +
                 "/getUserData (returns user data by getting a jwt)\n" +
-                "/getHeaderData (returns restaurant address or chain name, logo url\n)" +
-                "/getRestaurantAdmin (send restaurantAddress and get its manager\n" +
-                "/getChainDishes (get dishes that are in this chain\n";
+                "/getHeaderData (returns restaurant address or chain name, logo url)\n" +
+                "/getRestaurantAdmin (send restaurantAddress and get its manager)\n" +
+                "/getChainDishes (get dishes that are in this chain\n" +
+                "/getChainDishes (get dishes of all chain restaurants (Manager only)\n";
 
 
     }
@@ -106,7 +107,7 @@ class TestController {
         System.out.println("Got from web: " + jwt);
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
         ArrayList<JSONObject> addresses = MongoActions.getManagedRestaurants(Email);
-//        ArrayList<String> addresses = new ArrayList<>()fgjgjfg;
+
 
         return ResponseEntity.ok(addresses);
     }
@@ -162,8 +163,22 @@ class TestController {
     @GetMapping("/getChainDishes")
     public ResponseEntity ChainDishes(@RequestHeader("Authorization") String jwt)
     {
-            MongoActions.getChainDishes(jwtTokenUtil.extractUserName(jwt.substring(7)));
-            return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body("lalala");
+
+        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
+        if (MongoActions.getWorkerDuty(Email).equals("Restaurant_chain_manager"))
+        {
+            ArrayList <JSONObject> dishes = MongoActions.getChainDishes(Email);
+            return ResponseEntity.ok(dishes);
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You don't have permission to this request");
+        }
+
+
+
     }
+
+
 }
 

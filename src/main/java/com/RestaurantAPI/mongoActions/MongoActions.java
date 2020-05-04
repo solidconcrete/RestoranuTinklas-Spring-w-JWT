@@ -11,8 +11,8 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.BiFunction;
 
 public class MongoActions {
     private static MongoClient mongoClient;
@@ -98,6 +98,7 @@ public class MongoActions {
             dishDoc =(Document) dishCollection.find(query).first();
             dish.put("name", (String) dishDoc.get("Dish_name"));
             dish.put("img_url", (String) dishDoc.get("Image_link"));
+            dish.put("price", (Double) dishDoc.get("Price"));
             dish.put("id", id);
             dishes.add(dish);
 //            dishNames.add((String) dishDoc.get("Dish_name"));
@@ -182,9 +183,24 @@ public class MongoActions {
         return workersData;
     }
 
-    public static void getChainDishes(String Email)
+    public static ArrayList<JSONObject> getChainDishes(String Email)
     {
-        getRestaurantsFromChainName(getManagedRestaurantChain(Email));
+        ArrayList<JSONObject> chainDishes = new ArrayList<>();
+        ArrayList<JSONObject> restaurantDishes = new ArrayList<>();
+       ArrayList<JSONObject> restaurants = getRestaurantsFromChainName(getManagedRestaurantChain(Email));
+       for (JSONObject restaurant : restaurants)
+       {
+           restaurantDishes = MongoActions.getRestaurantDishes((String) restaurant.get("address"));
+           for (JSONObject dish: restaurantDishes)
+           {
+               if (!chainDishes.contains(dish))
+               {
+                   chainDishes.add(dish);
+                   System.out.println(dish);
+               }
+           }
+       }
+       return chainDishes;
     }
 
     public static String getManagedRestaurantChain(String Email)
