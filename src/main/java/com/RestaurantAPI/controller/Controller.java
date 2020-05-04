@@ -59,9 +59,15 @@ class TestController {
     @GetMapping("/")
     String hello()
     {
-        return "hello, this is the main page. Available commands are:" +
-                "/authenticate (POST)" +
-                "/addresses (GET)";
+        return "hello, this is the main page. Available commands are: \n" +
+                "/authenticate (POST) \n" +
+                "/addresses (returns managed restaurants) \n" +
+                "/menu (Send restaurantAddress and get its menu)\n" +
+                "/getUserData (returns user data by getting a jwt)\n" +
+                "/getHeaderData (returns restaurant address or chain name, logo url\n)" +
+                "/getRestaurantAdmin (send restaurantAddress and get its manager\n" +
+                "/getChainDishes (get dishes that are in this chain\n";
+
 
     }
 
@@ -71,8 +77,6 @@ class TestController {
     {
         String u = URLDecoder.decode(user, "ISO-8859-1");
 
-
-//        u = u.substring(0, u.length()-1);
         Object obj = JSONValue.parse(u);
         JSONObject jsonObject = (JSONObject) obj;
         String username =  (String) jsonObject.get("username");
