@@ -210,10 +210,10 @@ class TestController {
         Object obj = JSONValue.parse(data);
         JSONObject jsonObject = (JSONObject) obj;
 
-        String dishname = (String) jsonObject.get("name");
-        String dishPrice = (String) jsonObject.get("price");
-        String imgUrl = (String) jsonObject.get("img_url");
-        String ingredients = (String) jsonObject.get("ingredients");
+//        String dishname = (String) jsonObject.get("name");
+//        String dishPrice = (String) jsonObject.get("price");
+//        String imgUrl = (String) jsonObject.get("img_url");
+//        String ingredients = (String) jsonObject.get("ingredients");
 
         return ResponseEntity.ok("GOT THE STUFF");
 
