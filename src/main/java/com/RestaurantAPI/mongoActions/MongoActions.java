@@ -120,6 +120,7 @@ public class MongoActions {
 
     public static String getAddressOrChain(String Email)
     {
+        JSONObject addressOrChain = new JSONObject();
         MongoCollection<Document> collection = MongoActions.getCollection("workers");
         Document workerDoc = collection.find(new Document("Email", Email)).first();
 
@@ -127,6 +128,7 @@ public class MongoActions {
         if (duty.equals("Restaurant_chain_manager"))
         {
             System.out.println("MANAGER DETECTED");
+            addressOrChain.put("chain", workerDoc.get("Managed_restaurant_chain"));
             return (String) workerDoc.get("Managed_restaurant_chain");
         }
         else
@@ -230,13 +232,14 @@ public class MongoActions {
         return workerData;
     }
 
-    public static Boolean changeDishPrice (String id, double newPrice)
+    public static Boolean changeDishPrice (String dishName, double newPrice)
     {
         MongoCollection<Document> dishCollection = MongoActions.getCollection("dishes");
 
-        Bson filter = eq("_id", new ObjectId(id));
+        Bson filter = eq("Dish_name", dishName);
         Bson updateOperation = set("Price", newPrice);
         UpdateResult result = dishCollection.updateOne(filter, updateOperation);
+        System.out.println(result);
         if (result.getModifiedCount() != 1)
         {
             return false;

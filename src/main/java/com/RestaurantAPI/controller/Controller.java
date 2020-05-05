@@ -184,8 +184,9 @@ class TestController {
     {
         Object obj = JSONValue.parse(dishData);
         JSONObject jsonObject = (JSONObject) obj;
-        String id =  (String) jsonObject.get("id");
-        double newPrice = Double.parseDouble((String) jsonObject.get("newPrice"));
+
+        String dishName =  (String) jsonObject.get("name");
+        double newPrice = Double.parseDouble((String) jsonObject.get("price"));
 
         String text = Double.toString(Math.abs(newPrice));
         int integerPlaces = text.indexOf('.');
@@ -196,8 +197,8 @@ class TestController {
                     "2 digits in decimal");
         }
 
-        System.out.println("Got from request: " + id + " " + newPrice);
-        return ResponseEntity.ok(MongoActions.changeDishPrice(id, newPrice));
+
+        return ResponseEntity.ok(MongoActions.changeDishPrice(dishName, newPrice));
     }
 
 
