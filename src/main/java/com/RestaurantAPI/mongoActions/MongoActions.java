@@ -20,13 +20,12 @@ import static com.mongodb.client.model.Filters.ne;
 import static com.mongodb.client.model.Updates.set;
 
 public class MongoActions {
-    private static String uri = "mongodb+srv://admin:TrtY2c94xzxdDrj@cluster0-ekcge.mongodb.net/test?retryWrites=true&w=majority";
-    private static MongoClient mongoClient = new MongoClient(new MongoClientURI(uri));
+    private static MongoClient mongoClient;
 
     public static MongoCollection getCollection(String collectionName)
     {
-//        String uri = "mongodb+srv://admin:TrtY2c94xzxdDrj@cluster0-ekcge.mongodb.net/test?retryWrites=true&w=majority";
-//        mongoClient = new MongoClient(new MongoClientURI(uri));
+        String uri = "mongodb+srv://admin:TrtY2c94xzxdDrj@cluster0-ekcge.mongodb.net/test?retryWrites=true&w=majority";
+        mongoClient = new MongoClient(new MongoClientURI(uri));
         MongoDatabase db = mongoClient.getDatabase("restaurant_chain");
         MongoCollection<Document> collection = db.getCollection(collectionName);
         return collection;
