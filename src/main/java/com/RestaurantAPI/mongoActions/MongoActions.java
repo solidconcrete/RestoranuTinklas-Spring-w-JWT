@@ -118,7 +118,7 @@ public class MongoActions {
         return (String) restaurantDoc.get("Restaurant_chain");
     }
 
-    public static String getAddressOrChain(String Email)
+    public static JSONObject getAddressOrChain(String Email)
     {
         JSONObject addressOrChain = new JSONObject();
         MongoCollection<Document> collection = MongoActions.getCollection("workers");
@@ -129,12 +129,14 @@ public class MongoActions {
         {
             System.out.println("MANAGER DETECTED");
             addressOrChain.put("chain", workerDoc.get("Managed_restaurant_chain"));
-            return (String) workerDoc.get("Managed_restaurant_chain");
+//            return (String) workerDoc.get("Managed_restaurant_chain");
         }
         else
         {
-            return (String) workerDoc.get("Managed_restaurant");
+            addressOrChain.put("address", workerDoc.get("Managed_restaurant_chain"));
+//            return (String) workerDoc.get("Managed_restaurant");
         }
+        return addressOrChain;
     }
 
     public static String getLogoByChainName(String chainName)

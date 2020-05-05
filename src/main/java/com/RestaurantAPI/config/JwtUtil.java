@@ -1,9 +1,11 @@
 package com.RestaurantAPI.config;
 
 
+import com.RestaurantAPI.mongoActions.MongoActions;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -56,6 +58,12 @@ public class JwtUtil {
     public String generateToken (UserDetails userDetails)
     {
         Map<String, Object> claims = new HashMap<>();
+        JSONObject addressOrChain = MongoActions.getAddressOrChain(userDetails.getUsername());
+        if (addressOrChain.get("chain") != null)
+        {
+            claims.put("chain", addressOrChain.get("chain"));
+        }
+        claims.put("address", addressOrChain.get("address"));
         return createToken(claims, userDetails.getUsername());
     }
 

@@ -13,6 +13,7 @@ import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 
 
+import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
@@ -138,15 +139,17 @@ class TestController {
         ArrayList<JSONObject> headerDataArrayList = new ArrayList<>();
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
 
-        String addressOrChain = MongoActions.getAddressOrChain(Email);
-        String logo_url = MongoActions.getChainLogoByEmail(Email);
+        JSONObject addressOrChainJson = MongoActions.getAddressOrChain(Email);
+        System.out.println("AddressOrChainTest: " + addressOrChainJson.get("address"));
 
-        JSONObject headerData = new JSONObject();
-        headerData.put("addressOrChain", addressOrChain);
-        headerData.put("logo_url", logo_url);
-        headerData.put("id", 1);
-        headerDataArrayList.add(headerData);
-        return ResponseEntity.ok(headerDataArrayList);
+//        String logo_url = MongoActions.getChainLogoByEmail(Email);
+//
+//        JSONObject headerData = new JSONObject();
+//        headerData.put("addressOrChain", addressOrChain);
+//        headerData.put("logo_url", logo_url);
+//        headerData.put("id", 1);
+//        headerDataArrayList.add(headerData);
+        return ResponseEntity.ok(addressOrChainJson);
     }
 
     @GetMapping("/getRestaurantAdmin")
@@ -201,6 +204,21 @@ class TestController {
         return ResponseEntity.ok(MongoActions.changeDishPrice(dishName, newPrice));
     }
 
+    @PutMapping("/addDish")
+    public ResponseEntity putDish (@RequestBody String data)
+    {
+        Object obj = JSONValue.parse(data);
+        JSONObject jsonObject = (JSONObject) obj;
+
+        String dishname = (String) jsonObject.get("name");
+        String dishPrice = (String) jsonObject.get("price");
+        String imgUrl = (String) jsonObject.get("img_url");
+        String ingredients = (String) jsonObject.get("ingredients");
+
+        return ResponseEntity.ok("GOT THE STUFF");
+
+
+    }
 
 }
 
