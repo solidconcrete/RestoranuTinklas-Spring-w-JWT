@@ -69,8 +69,8 @@ class TestController {
                 "/getHeaderData (returns restaurant address or chain name, logo url)\n" +
                 "/getRestaurantAdmin (send restaurantAddress and get its manager)\n" +
                 "/getChainDishes (get dishes that are in this chain\n" +
-                "/getChainDishes (get dishes of all chain restaurants (Manager only)\n";
-
+                "/getChainDishes (get dishes of all chain restaurants (Manager only)\n" +
+                "/changePrice (send body with \"id\" and \"newPrice\"";
 
     }
 
