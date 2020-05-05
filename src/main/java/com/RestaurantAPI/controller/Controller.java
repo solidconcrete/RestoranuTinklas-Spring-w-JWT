@@ -9,6 +9,7 @@ import com.RestaurantAPI.models.AuthenticationResponse;
 import com.RestaurantAPI.mongoActions.MongoActions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import javafx.beans.binding.IntegerBinding;
 import org.bson.Document;
 
 
@@ -38,6 +39,7 @@ import java.net.URLDecoder;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 @CrossOrigin
@@ -135,8 +137,10 @@ class TestController {
     {
         ArrayList<JSONObject> headerDataArrayList = new ArrayList<>();
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
+
         String addressOrChain = MongoActions.getAddressOrChain(Email);
         String logo_url = MongoActions.getChainLogoByEmail(Email);
+
         JSONObject headerData = new JSONObject();
         headerData.put("addressOrChain", addressOrChain);
         headerData.put("logo_url", logo_url);
@@ -161,7 +165,7 @@ class TestController {
     }
 
     @GetMapping("/getChainDishes")
-    public ResponseEntity ChainDishes(@RequestHeader("Authorization") String jwt)
+    public ResponseEntity chainDishes(@RequestHeader("Authorization") String jwt)
     {
 
         String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
@@ -174,9 +178,26 @@ class TestController {
         {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You don't have permission to this request");
         }
+    }
+    @PatchMapping("/changePrice")
+    public ResponseEntity changePrice (@RequestBody String  dishData)
+    {
+        Object obj = JSONValue.parse(dishData);
+        JSONObject jsonObject = (JSONObject) obj;
+        String id =  (String) jsonObject.get("id");
+        double newPrice = Double.parseDouble((String) jsonObject.get("newPrice"));
 
+        String text = Double.toString(Math.abs(newPrice));
+        int integerPlaces = text.indexOf('.');
+        int decimalPlaces = text.length() - integerPlaces - 1;
+        if (decimalPlaces > 2)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("price should contain the maximum of" +
+                    "2 digits in decimal");
+        }
 
-
+        System.out.println("Got from request: " + id + " " + newPrice);
+        return ResponseEntity.ok(MongoActions.changeDishPrice(id, newPrice));
     }
 
 

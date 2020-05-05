@@ -6,22 +6,27 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.bson.conversions.Bson;
+import org.bson.json.JsonWriterSettings;
 import org.json.simple.JSONObject;
 
 import java.util.*;
-import java.util.function.BiFunction;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.ne;
+import static com.mongodb.client.model.Updates.set;
 
 public class MongoActions {
-    private static MongoClient mongoClient;
-
+    private static String uri = "mongodb+srv://admin:TrtY2c94xzxdDrj@cluster0-ekcge.mongodb.net/test?retryWrites=true&w=majority";
+    private static MongoClient mongoClient = new MongoClient(new MongoClientURI(uri));
 
     public static MongoCollection getCollection(String collectionName)
     {
-        String uri = "mongodb+srv://admin:TrtY2c94xzxdDrj@cluster0-ekcge.mongodb.net/test?retryWrites=true&w=majority";
-        mongoClient = new MongoClient(new MongoClientURI(uri));
+//        String uri = "mongodb+srv://admin:TrtY2c94xzxdDrj@cluster0-ekcge.mongodb.net/test?retryWrites=true&w=majority";
+//        mongoClient = new MongoClient(new MongoClientURI(uri));
         MongoDatabase db = mongoClient.getDatabase("restaurant_chain");
         MongoCollection<Document> collection = db.getCollection(collectionName);
         return collection;
@@ -47,7 +52,6 @@ public class MongoActions {
             System.out.println(restaurantJson);
             addresses.add (restaurantJson);
         }
-        mongoClient.close();
         return addresses;
     }
 
@@ -118,6 +122,7 @@ public class MongoActions {
     {
         MongoCollection<Document> collection = MongoActions.getCollection("workers");
         Document workerDoc = collection.find(new Document("Email", Email)).first();
+
         String duty = (String) workerDoc.get("Duty");
         if (duty.equals("Restaurant_chain_manager"))
         {
@@ -223,5 +228,19 @@ public class MongoActions {
         workerData.put("surname", workerDoc.getString("Surname"));
         workerData.put("email", workerDoc.getString("Email"));
         return workerData;
+    }
+
+    public static Boolean changeDishPrice (String id, double newPrice)
+    {
+        MongoCollection<Document> dishCollection = MongoActions.getCollection("dishes");
+
+        Bson filter = eq("_id", new ObjectId(id));
+        Bson updateOperation = set("Price", newPrice);
+        UpdateResult result = dishCollection.updateOne(filter, updateOperation);
+        if (result.getModifiedCount() != 1)
+        {
+            return false;
+        }
+        return true;
     }
 }
