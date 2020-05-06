@@ -1,18 +1,13 @@
 package com.RestaurantAPI.controller;
 
-import com.RestaurantAPI.MainApplicationClass;
+
 import com.RestaurantAPI.Services.MyUserDetailsService;
 import com.RestaurantAPI.config.JwtUtil;
 import com.RestaurantAPI.filters.JwtRequestFilter;
 import com.RestaurantAPI.models.AuthenticationRequest;
 import com.RestaurantAPI.models.AuthenticationResponse;
 import com.RestaurantAPI.mongoActions.MongoActions;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 
-import com.mongodb.util.JSON;
-import io.jsonwebtoken.Claims;
-import org.bson.Document;
 
 
 import org.bson.types.ObjectId;
@@ -35,6 +30,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.xml.ws.Response;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -226,6 +222,33 @@ class TestController {
 //
 //        boolean putResponse = MongoActions.addDish(dishName, dishPrice, imgUrl, ingredientsArray);
 //    }
+
+    @PatchMapping ("changePassword")
+    public ResponseEntity changePassword (@RequestBody String passwords, @RequestHeader("Authorization") String jwt)
+    {
+        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
+        String password = MongoActions.getUserPassword(Email);
+
+        Object obj = JSONValue.parse(passwords);
+        JSONObject jsonObject = (JSONObject) obj;
+        String oldPassword = (String) jsonObject.get("oldPassword");
+        String newPassword = (String) jsonObject.get("newPassword");
+
+        if (!oldPassword.equals(password))
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect current password");
+        }
+        else
+        {
+            if (MongoActions.changeUserPassword(Email, newPassword) == true)
+            {
+                return ResponseEntity.ok().body("Password changed successfully");
+            }
+            else
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong");
+        }
+
+    }
 
 }
 

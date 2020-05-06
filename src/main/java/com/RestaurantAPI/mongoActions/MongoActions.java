@@ -11,6 +11,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.bson.conversions.Bson;
 import org.bson.json.JsonWriterSettings;
+import org.hibernate.validator.constraints.Email;
 import org.json.simple.JSONObject;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
@@ -289,7 +290,26 @@ public class MongoActions {
         MongoCollection<Document> workerCollection = MongoActions.getCollection("restaurant_chains");
         Document workerDoc = workerCollection.find(new Document("Restaurant_chain_name", chainName)).first();
         return workerDoc.getString("Chain_logo_link");
+    }
 
+    public static String getUserPassword (String Email)
+    {
+        MongoCollection<Document> workerCollection = MongoActions.getCollection("workers");
+        Document workerDoc = workerCollection.find(new Document("Email", Email)).first();
+        String password = workerDoc.getString("Password");
+        return password;
+    }
 
+    public static boolean changeUserPassword (String Email, String newPassword)
+    {
+        MongoCollection<Document> workerCollection = MongoActions.getCollection("workers");
+        Bson filter = eq("Email", Email);
+        Bson updateOperation = set("Password", newPassword);
+        UpdateResult result = workerCollection.updateOne(filter, updateOperation);
+        if (result.getModifiedCount()  != 0)
+        {
+            return true;
+        }
+        return false;
     }
 }
