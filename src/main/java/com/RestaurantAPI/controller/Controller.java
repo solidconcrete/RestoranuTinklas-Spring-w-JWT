@@ -1,6 +1,7 @@
 package com.RestaurantAPI.controller;
 
 
+import com.RestaurantAPI.Services.MailingService;
 import com.RestaurantAPI.Services.MyUserDetailsService;
 import com.RestaurantAPI.config.JwtUtil;
 import com.RestaurantAPI.filters.JwtRequestFilter;
@@ -228,7 +229,7 @@ class TestController {
 
         MongoActions.addDish(dishName, dishPrice, imgUrl, ingredientsArray, chainName);
 
-        return ResponseEntity.ok("Something inserted");
+        return ResponseEntity.ok("Dish inserted");
 
     }
 
@@ -256,6 +257,27 @@ class TestController {
             else
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong");
         }
+
+    }
+
+    @GetMapping ("/sendMail")
+    public ResponseEntity sendMail()
+    {
+        MailingService.sendMessage("saniasania523@gmail.com");
+        return ResponseEntity.ok("yes");
+    }
+
+    @PutMapping("/addRestaurant")
+    public ResponseEntity addRestaurant (@RequestBody String data, @RequestHeader("Authorization") String jwt)
+    {
+        Object obj = JSONValue.parse(data);
+        JSONObject jsonObject = (JSONObject) obj;
+
+        String chainName = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain");
+        String restaurantAddress = (String) jsonObject.get("restaurantAddres");
+
+        MongoActions.addRestaurant(chainName, restaurantAddress);
+        return ResponseEntity.ok("Restaurant inserted");
 
     }
 

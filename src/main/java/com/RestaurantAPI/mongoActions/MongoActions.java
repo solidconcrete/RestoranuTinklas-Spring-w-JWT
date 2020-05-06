@@ -322,4 +322,12 @@ public class MongoActions {
         }
         return false;
     }
+
+    public static void addRestaurant (String chainName, String restaurantAddress)
+    {
+        MongoCollection<Document> restaurantCollection = MongoActions.getCollection("restaurants");
+        Document restaurantDoc = new Document("Address", restaurantAddress)
+                .append("Restaurant_chain", chainName);
+        restaurantCollection.insertOne(restaurantDoc);
+    }
 }
