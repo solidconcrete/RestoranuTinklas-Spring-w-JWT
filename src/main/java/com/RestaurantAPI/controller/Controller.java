@@ -270,7 +270,7 @@ class TestController {
         JSONObject jsonObject = (JSONObject) obj;
 
         String chainName = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain");
-        String restaurantAddress = (String) jsonObject.get("restaurantAddres");
+        String restaurantAddress = (String) jsonObject.get("restaurantAddress");
 
         MongoActions.addRestaurant(chainName, restaurantAddress);
         return ResponseEntity.ok("Restaurant inserted");
