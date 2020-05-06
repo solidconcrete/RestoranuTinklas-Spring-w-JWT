@@ -12,6 +12,7 @@ import org.bson.types.ObjectId;
 import org.bson.conversions.Bson;
 import org.bson.json.JsonWriterSettings;
 import org.json.simple.JSONObject;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.*;
 
@@ -127,13 +128,12 @@ public class MongoActions {
         String duty = (String) workerDoc.get("Duty");
         if (duty.equals("Restaurant_chain_manager"))
         {
-            System.out.println("MANAGER DETECTED");
             addressOrChain.put("chain", workerDoc.get("Managed_restaurant_chain"));
 //            return (String) workerDoc.get("Managed_restaurant_chain");
         }
         else
         {
-            addressOrChain.put("address", workerDoc.get("Managed_restaurant_chain"));
+            addressOrChain.put("address", workerDoc.get("Managed_restaurant"));
 //            return (String) workerDoc.get("Managed_restaurant");
         }
         return addressOrChain;
@@ -247,5 +247,49 @@ public class MongoActions {
             return false;
         }
         return true;
+    }
+
+    public static String getChainFromWorkerEmail (String Email)
+    {
+        MongoCollection<Document> workerCollection = MongoActions.getCollection("workers");
+        Document workerDoc = workerCollection.find(new Document("Email", Email)).first();
+        String restaurantAddress = workerDoc.getString("Managed_restaurant");
+
+        MongoCollection<Document> restaurantCollection = MongoActions.getCollection("restaurants");
+        Document restaurantDoc = restaurantCollection.find(new Document("Address", restaurantAddress)).first();
+        String chain = restaurantDoc.getString("Restaurant_chain");
+        return chain;
+    }
+
+    public static Boolean addDish (String dishName, String dishPrice, String imgUrl, String [] dishIngredients)
+    {
+        MongoCollection<Document> dishCollection = MongoActions.getCollection("dishes");
+
+        return false;
+    }
+
+    public static String getChainFromManagerEmail (String Email)
+    {
+        MongoCollection<Document> workerCollection = MongoActions.getCollection("workers");
+        Document workerDoc = workerCollection.find(new Document("Email", Email)).first();
+        String chainName = workerDoc.getString("Managed_restaurant_chain");
+        return chainName;
+    }
+
+    public static String getAddressFromWorkerEmail (String Email)
+    {
+        MongoCollection<Document> workerCollection = MongoActions.getCollection("workers");
+        Document workerDoc = workerCollection.find(new Document("Email", Email)).first();
+        String restaurantAddress = workerDoc.getString("Managed_restaurant");
+        return restaurantAddress;
+    }
+
+    public static String getChainLogoByChainName (String chainName)
+    {
+        MongoCollection<Document> workerCollection = MongoActions.getCollection("restaurant_chains");
+        Document workerDoc = workerCollection.find(new Document("Restaurant_chain_name", chainName)).first();
+        return workerDoc.getString("Chain_logo_link");
+
+
     }
 }

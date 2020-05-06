@@ -37,11 +37,12 @@ public class JwtUtil {
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver)
     {
-    final Claims claims = extractAllClaims(token);
-    return claimsResolver.apply(claims);
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
     }
 
-    private Claims extractAllClaims(String token)
+//    private Claims extractAllClaims(String token)
+    public Claims extractAllClaims(String token)
     {
         if (token.contains("{\"jwt\":\""))
         {
@@ -58,12 +59,19 @@ public class JwtUtil {
     public String generateToken (UserDetails userDetails)
     {
         Map<String, Object> claims = new HashMap<>();
-        JSONObject addressOrChain = MongoActions.getAddressOrChain(userDetails.getUsername());
-        if (addressOrChain.get("chain") != null)
+
+        String duty = MongoActions.getWorkerDuty(userDetails.getUsername());
+        claims.put("duty", duty);
+        if (duty.equals("Restaurant_manager"))
         {
-            claims.put("chain", addressOrChain.get("chain"));
+            claims.put("chain", MongoActions.getChainFromWorkerEmail(userDetails.getUsername()));
+            claims.put("address", MongoActions.getAddressFromWorkerEmail(userDetails.getUsername()));
         }
-        claims.put("address", addressOrChain.get("address"));
+        else
+        {
+            claims.put("chain", MongoActions.getChainFromManagerEmail(userDetails.getUsername()));
+        }
+
         return createToken(claims, userDetails.getUsername());
     }
 

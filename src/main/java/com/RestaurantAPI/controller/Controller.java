@@ -10,6 +10,8 @@ import com.RestaurantAPI.mongoActions.MongoActions;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 
+import com.mongodb.util.JSON;
+import io.jsonwebtoken.Claims;
 import org.bson.Document;
 
 
@@ -19,6 +21,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -137,19 +140,19 @@ class TestController {
     ResponseEntity restaurantChain(@RequestHeader("Authorization") String jwt)
     {
         ArrayList<JSONObject> headerDataArrayList = new ArrayList<>();
-        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
+        JSONObject headerData = new JSONObject();
 
-        JSONObject addressOrChainJson = MongoActions.getAddressOrChain(Email);
-        System.out.println("AddressOrChainTest: " + addressOrChainJson.get("address"));
-
-//        String logo_url = MongoActions.getChainLogoByEmail(Email);
-//
-//        JSONObject headerData = new JSONObject();
-//        headerData.put("addressOrChain", addressOrChain);
-//        headerData.put("logo_url", logo_url);
-//        headerData.put("id", 1);
-//        headerDataArrayList.add(headerData);
-        return ResponseEntity.ok(addressOrChainJson);
+        if (jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("duty").equals("Restaurant_chain_manager"))
+        {
+            headerData.put("addressOrChain",jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain"));
+        }
+        else
+        {
+            headerData.put("addressOrChain",jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("address"));
+        }
+        headerData.put("logo_url", MongoActions.getChainLogoByChainName((String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain")));
+            headerDataArrayList.add(headerData);
+        return ResponseEntity.ok(headerDataArrayList);
     }
 
     @GetMapping("/getRestaurantAdmin")
@@ -200,25 +203,29 @@ class TestController {
                     "2 digits in decimal");
         }
 
-
-        return ResponseEntity.ok(MongoActions.changeDishPrice(dishName, newPrice));
+        boolean patchResponse = MongoActions.changeDishPrice(dishName, newPrice);
+        if (patchResponse == true)
+        {
+            return ResponseEntity.ok(patchResponse);
+        }
+        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("something went wrong");
     }
 
-    @PutMapping("/addDish")
-    public ResponseEntity putDish (@RequestBody String data)
-    {
-        Object obj = JSONValue.parse(data);
-        JSONObject jsonObject = (JSONObject) obj;
-
-//        String dishname = (String) jsonObject.get("name");
+//    @PutMapping("/addDish")
+//    public ResponseEntity putDish (@RequestBody String data)
+//    {
+//        Object obj = JSONValue.parse(data);
+//        JSONObject jsonObject = (JSONObject) obj;
+//
+//        String dishName = (String) jsonObject.get("name");
 //        String dishPrice = (String) jsonObject.get("price");
 //        String imgUrl = (String) jsonObject.get("img_url");
-//        String ingredients = (String) jsonObject.get("ingredients");
-
-        return ResponseEntity.ok("GOT THE STUFF");
-
-
-    }
+//        String ingredientsString = (String) jsonObject.get("ingredients");
+//
+//        String [] ingredientsArray = ingredientsString.split(",");
+//
+//        boolean putResponse = MongoActions.addDish(dishName, dishPrice, imgUrl, ingredientsArray);
+//    }
 
 }
 
