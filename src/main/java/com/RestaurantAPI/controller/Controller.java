@@ -116,7 +116,7 @@ class TestController {
     }
 
     @GetMapping("/menu")
-    ResponseEntity menu(@RequestHeader("RestaurantAddress") String restaurantAddress, @RequestHeader ("Authorization") String jwt)
+    ResponseEntity menu(@RequestHeader ("Authorization") String jwt)
     {
         String duty = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("duty");
         String chainName = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain");
@@ -178,7 +178,6 @@ class TestController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You don't have permission to this request");
         }
     }
-
 
     @PatchMapping("/changePrice")
     public ResponseEntity changePrice (@RequestBody String  dishData, @RequestHeader("Authorization") String jwt)
