@@ -3,6 +3,7 @@ package com.RestaurantAPI.mongoActions;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.WriteResult;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -17,8 +18,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.*;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.ne;
+import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Updates.set;
 
 public class MongoActions {
@@ -235,11 +235,14 @@ public class MongoActions {
         return workerData;
     }
 
-    public static Boolean changeDishPrice (String dishName, double newPrice)
+    public static Boolean changeDishPrice (String dishName, String chainName, double newPrice)
     {
         MongoCollection<Document> dishCollection = MongoActions.getCollection("dishes");
 
-        Bson filter = eq("Dish_name", dishName);
+
+        Bson filter = and(eq("Dish_name", dishName), eq("Restaurant_chain", chainName));
+
+
         Bson updateOperation = set("Price", newPrice);
         UpdateResult result = dishCollection.updateOne(filter, updateOperation);
         System.out.println(result);
@@ -262,11 +265,18 @@ public class MongoActions {
         return chain;
     }
 
-    public static Boolean addDish (String dishName, String dishPrice, String imgUrl, String [] dishIngredients)
+    public static void addDish (String dishName, String dishPrice, String imgUrl, String [] dishIngredients, String chainName)
     {
         MongoCollection<Document> dishCollection = MongoActions.getCollection("dishes");
-
-        return false;
+        ArrayList<String> ingredients = new ArrayList<>();
+        for (int i = 0; i < dishIngredients.length; i++)
+        {
+            ingredients.add(dishIngredients[i]);
+        }
+        Document dishDoc = new Document("Dish_name", dishName).append("Restaurant_chain", chainName)
+                .append("Image_link", imgUrl).append("Price", dishPrice)
+                .append("Ingredients", ingredients);
+        dishCollection.insertOne(dishDoc);
     }
 
     public static String getChainFromManagerEmail (String Email)

@@ -181,11 +181,15 @@ class TestController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You don't have permission to this request");
         }
     }
+
     @PatchMapping("/changePrice")
-    public ResponseEntity changePrice (@RequestBody String  dishData)
+    public ResponseEntity changePrice (@RequestBody String  dishData, @RequestHeader("Authorization") String jwt)
     {
         Object obj = JSONValue.parse(dishData);
         JSONObject jsonObject = (JSONObject) obj;
+
+        String chainName = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain");
+
 
         String dishName =  (String) jsonObject.get("name");
         double newPrice = Double.parseDouble((String) jsonObject.get("price"));
@@ -199,7 +203,7 @@ class TestController {
                     "2 digits in decimal");
         }
 
-        boolean patchResponse = MongoActions.changeDishPrice(dishName, newPrice);
+        boolean patchResponse = MongoActions.changeDishPrice(dishName, chainName, newPrice);
         if (patchResponse == true)
         {
             return ResponseEntity.ok(patchResponse);
@@ -207,21 +211,26 @@ class TestController {
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("something went wrong");
     }
 
-//    @PutMapping("/addDish")
-//    public ResponseEntity putDish (@RequestBody String data)
-//    {
-//        Object obj = JSONValue.parse(data);
-//        JSONObject jsonObject = (JSONObject) obj;
-//
-//        String dishName = (String) jsonObject.get("name");
-//        String dishPrice = (String) jsonObject.get("price");
-//        String imgUrl = (String) jsonObject.get("img_url");
-//        String ingredientsString = (String) jsonObject.get("ingredients");
-//
-//        String [] ingredientsArray = ingredientsString.split(",");
-//
-//        boolean putResponse = MongoActions.addDish(dishName, dishPrice, imgUrl, ingredientsArray);
-//    }
+    @PutMapping("/addDish")
+    public ResponseEntity putDish (@RequestBody String data, @RequestHeader("Authorization") String jwt)
+    {
+        Object obj = JSONValue.parse(data);
+        JSONObject jsonObject = (JSONObject) obj;
+
+        String chainName = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain");
+
+        String dishName = (String) jsonObject.get("name");
+        String dishPrice = (String) jsonObject.get("price");
+        String imgUrl = (String) jsonObject.get("img_url");
+        String ingredientsString = (String) jsonObject.get("ingredients");
+
+        String [] ingredientsArray = ingredientsString.split(",");
+
+        MongoActions.addDish(dishName, dishPrice, imgUrl, ingredientsArray, chainName);
+
+        return ResponseEntity.ok("Something inserted");
+
+    }
 
     @PatchMapping ("changePassword")
     public ResponseEntity changePassword (@RequestBody String passwords, @RequestHeader("Authorization") String jwt)
