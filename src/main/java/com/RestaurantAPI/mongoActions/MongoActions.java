@@ -193,11 +193,10 @@ public class MongoActions {
         return workersData;
     }
 
-    public static ArrayList<JSONObject> getChainDishes(String Email)
+    public static ArrayList<JSONObject> getChainDishes(String chainName)
     {
         ArrayList<JSONObject> chainDishes = new ArrayList<>();
         MongoCollection dishesCollection = MongoActions.getCollection("dishes");;
-        String chainName = getManagedRestaurantChain(Email);
         MongoCursor<Document> dishDedails = dishesCollection.find(new Document("Restaurant_chain", chainName)).iterator();
 
             while (dishDedails.hasNext())

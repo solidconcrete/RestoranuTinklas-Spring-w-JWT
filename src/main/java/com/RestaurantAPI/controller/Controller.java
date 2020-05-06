@@ -118,8 +118,20 @@ class TestController {
     @GetMapping("/menu")
     ResponseEntity menu(@RequestHeader("RestaurantAddress") String restaurantAddress, @RequestHeader ("Authorization") String jwt)
     {
-        ArrayList<JSONObject> dishes = MongoActions.getRestaurantDishes(restaurantAddress);
-        return ResponseEntity.ok(dishes);
+        String duty = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("duty");
+        String chainName = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("chain");
+        String address = (String) jwtTokenUtil.extractAllClaims(jwt.substring(7)).get("address");
+        if (duty.equals("Restaurant_manager"))
+        {
+            return ResponseEntity.ok(MongoActions.getRestaurantDishes(address));
+        }
+        else
+            if ((duty.equals("Restaurant_chain_manager")))
+            {
+                return ResponseEntity.ok(MongoActions.getChainDishes(chainName));
+            }
+        System.out.println(duty + " " + chainName + " " + address);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("something went wrong");
     }
 
     @GetMapping("/getUserData")
@@ -167,21 +179,6 @@ class TestController {
         }
     }
 
-    @GetMapping("/getChainDishes")
-    public ResponseEntity chainDishes(@RequestHeader("Authorization") String jwt)
-    {
-
-        String Email = jwtTokenUtil.extractUserName(jwt.substring(7));
-        if (MongoActions.getWorkerDuty(Email).equals("Restaurant_chain_manager"))
-        {
-            ArrayList <JSONObject> dishes = MongoActions.getChainDishes(Email);
-            return ResponseEntity.ok(dishes);
-        }
-        else
-        {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You don't have permission to this request");
-        }
-    }
 
     @PatchMapping("/changePrice")
     public ResponseEntity changePrice (@RequestBody String  dishData, @RequestHeader("Authorization") String jwt)
